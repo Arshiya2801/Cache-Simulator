@@ -1,0 +1,15 @@
+# Compiled binaries and objects
+*.exe
+*.o
+*.o.mac
+csim
+csim_mac
+solution.zip
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# OS files
+.DS_Store
+Thumbs.db

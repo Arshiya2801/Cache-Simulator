@@ -1,0 +1,26 @@
+# Sample Memory Access Trace
+# Format: <type> <address_hex> <size>
+# l = load (read), s = store (write)
+#
+# Scenario 1: Spatial locality (sequential access within the same 16-byte block 0x1000-0x100F)
+l 0x1000 4
+s 0x1004 4
+l 0x1008 4
+s 0x100C 4
+
+# Scenario 2: Temporal locality (re-accessing previously cached block)
+l 0x1000 4
+s 0x1004 4
+
+# Scenario 3: Accessing new memory block (Miss)
+l 0x2000 4
+l 0x2004 4
+
+# Scenario 4: Set index conflict demonstration
+# With 256 sets and 16-byte blocks:
+# offset_bits = 4, index_bits = 8.
+# address >> 4 & 0xFF gives set index.
+# Addresses 0x1000 (set 0) and 0x2000 (set 0) share the same set!
+l 0x3000 4
+l 0x4000 4
+l 0x5000 4
